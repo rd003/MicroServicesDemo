@@ -1,0 +1,8 @@
+POST http://localhost:5070/api/platforms 
+Content-Type: application/json
+
+{
+    "name": "C# In Depth",
+    "publisher":"Manning Publications",
+    "cost":"Paid"
+}
