@@ -15,7 +15,6 @@ spec:
       containers:
         - name: platformservice
           image: ravindradevrani003/platform-service:latest
-          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
