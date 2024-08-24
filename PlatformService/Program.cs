@@ -16,19 +16,22 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<ICommandDataClient, HttpCommandDataClient>();
 
 
-if (builder.Environment.IsDevelopment())
-{
-    Console.WriteLine("--> Using InMem Db");
-    builder.Services.AddDbContext<AppDbContext>(opt =>
-         opt.UseInMemoryDatabase("InMem"));
-}
-else
-{
-    Console.WriteLine("--> Using SqlServer Db");
-    builder.Services
+// if (builder.Environment.IsDevelopment())
+// {
+//     Console.WriteLine("--> Using InMem Db");
+//     builder.Services.AddDbContext<AppDbContext>(opt =>
+//          opt.UseInMemoryDatabase("InMem"));
+// }
+// else
+// {
+//     Console.WriteLine("--> Using SqlServer Db");
+//     builder.Services
+//            .AddDbContext<AppDbContext>(opt =>
+//            opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
+// }
+builder.Services
            .AddDbContext<AppDbContext>(opt =>
            opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
-}
 
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 
@@ -49,7 +52,6 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-PrepDb.PrepPopulation(app, app.Environment.IsProduction());
-// PrepDb.PrepPopulation(app);
+//PrepDb.PrepPopulation(app, app.Environment.IsProduction());
 Console.WriteLine($"--> Listining Command service at endpoint :" + builder.Configuration["CommandService"]);
 app.Run();
