@@ -30,8 +30,9 @@ builder.Services.AddScoped<ICommandDataClient, HttpCommandDataClient>();
 //            opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
 // }
 builder.Services
-           .AddDbContext<AppDbContext>(opt =>
-           opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
+       .AddDbContext<AppDbContext>(opt =>
+       opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
+
 
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 
@@ -52,6 +53,10 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-//PrepDb.PrepPopulation(app, app.Environment.IsProduction());
+
+// populating data
+// PrepDb.PrepPopulation(app, app.Environment.IsProduction());
+PrepDb.PrepPopulation(app, true);
+
 Console.WriteLine($"--> Listining Command service at endpoint :" + builder.Configuration["CommandService"]);
 app.Run();
