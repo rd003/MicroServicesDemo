@@ -9,9 +9,11 @@ namespace CommandsService.Models
         [Required]
         public int Id { get; set; }
 
+        // Id from external service
         [Required]
         public int ExternalID { get; set; }
 
+        // name from external service
         [Required]
         public string Name { get; set; } = string.Empty;
 
