@@ -4,7 +4,7 @@ I have implemented this code while I was learning micro service architecture in 
 
 ## Tech used
 
-- .Net 6
+- .Net 8 Web apis
 - Sql server
 - Docker
 - Kebernetes
